@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%-include('../resource/_stylesheet')%>
+    <title><%=blog.title%> | SatBlog</title>
+</head>
+<body>
+    <div class="container">
+      <div class="card" style="height: fit-content;">
+        <div class="card-body">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title"><%=blog.title%><span style="font-size:16px;color:rgb(252, 113, 0);font-weight: 600;float:right;"><i>Public vào ngày&nbsp;<%=blog.date%></i></span></h4>
+                <%if (blog.isAnonymous==0) {%>
+                  <span style="font-size: 12px;font-weight: 600;color:grey">Viết bởi: <%=blog.author%></span>
+                <%}else{%>
+                  <span style="font-size: 12px;font-weight: 600;color:grey">Viết bởi người dùng ẩn danh</span>
+                <%}%>
+                <h6 class="card-title"><%=blog.des%></h6><br>
+                <hr>
+                <div id="mycontent" class="card-text">
+                <hr>
+                </div>
+                <div id="mycontent2" style="display:none">
+                  <%=blog.content%>
+                </div>
+                <script>
+                  document.getElementById('mycontent').innerHTML= document.getElementById('mycontent2').innerText
+                </script>
+                <a class="btn btn-primary" href="/">Về trang chủ</a>
+              </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+</body>
+</html>

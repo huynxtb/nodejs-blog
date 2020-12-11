@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%-include('resource/_stylesheet')%>
+    <title>Home | SatBlog</title>
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-weight: 600;">Satellite Blog</h1>
+        <a href="/article/new" class="btn btn-success">Viết bài mới</a>
+        <% if(locals.user) { %>
+            <form style="display: inline" action="login/logout" method="post" name="logoutForm">
+              <a style="float:right; background-color: #6e0404; color: white; margin-left: 5px" 
+                class="btn btn-warning" onclick="logout()">Đăng xuất</a>
+            </form>
+          <p style="float:right; background-color: #26005e; color: white" class="btn btn-warning""><%= user %></p>
+        <% } else {%>
+          <a style="float:right" href="/login/" class="btn btn-warning">Đăng nhập</a>
+        <% } %>
+        <%content.forEach(element => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="card">
+                      <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#">Bài viết</a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Ngày tạo: <%=element.date%></a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="card-body">
+                        <h4 class="card-title"><%=element.title%></h4>
+                        <p class="card-text"><%=element.des%></p>
+                        <a class="btn btn-primary" href="/article/view/<%=element.id%>">Xem thêm</a>
+                        <a class="btn btn-warning" href="/article/edit/<%=element.id%>">Sửa bài viết</a>
+                        <a class="btn btn-danger" href="/article/doDelete/<%=element.id%>">Xóa bài viết</a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        <%});%>
+    </div>
+    
+    <!-- handle err permission-->
+      
+    <% if(locals.authErr) { %>
+      <script>
+          Swal.fire({
+            icon: 'info',
+            title: 'Vui lòng đăng nhập',
+            showDenyButton: true,
+            confirmButtonText: 'Đăng Nhập',
+            denyButtonText: 'Hủy'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "http://localhost:3000/login/";
+            }else{
+              window.location.href = "http://localhost:3000/";
+            }
+          })
+      </script>
+    <% } %>
+    
+    <% if(locals.notPermiss) { %>
+      <script>
+          Swal.fire({
+            icon: 'info',
+            title: 'Bạn không có quyền thực hiện chức năng',
+            showDenyButton: true,
+            confirmButtonText: 'Ok',
+            denyButtonText: 'Hủy'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "http://localhost:3000/";
+            }else{
+              window.location.href = "http://localhost:3000/";
+            }
+          })
+      </script>
+    <% } %>
+    <!--end handle err permission-->
+    
+    <script>
+      function logout(){
+        Swal.fire({
+          icon: 'info',
+          title: 'Bạn có chắc muốn đăng xuất?',
+          showDenyButton: true,
+          confirmButtonText: 'Đăng xuất',
+          denyButtonText: 'Hủy'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.logoutForm.submit();
+          }
+        })
+      }
+    </script>
+  
+</body>
+</html>

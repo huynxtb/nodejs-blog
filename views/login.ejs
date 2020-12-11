@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%-include('resource/_stylesheet')%>
+    <title>Login | SatBlog</title>
+</head>
+<body>
+  <div class="container" style="align-items: center;">
+    <h1 class="mb-4">Đăng nhập</h1>  
+    <% if(locals.usernameErr) { %>
+      <p style=" color: red" ><%= usernameErr %></p>
+    <% } %>
+    <form method="POST" action="/login/userlogin">
+        <div class="form-group col-md-4 ">
+          <label for="">Tên người dùng</label>
+          <input type="text" class="form-control" name="username" aria-describedby="helpId" placeholder="Nhập tên người dùng" required>
+          <label for="">Mật khẩu</label>
+          <input type="password" class="form-control" name="password" aria-describedby="helpId" placeholder="Nhập mật khẩu" required>
+          <br>
+          <button type="submit" class="btn btn-primary">Đăng nhập</button>
+          <a href="/" type="submit" class="btn btn-secondary">Hủy bỏ</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

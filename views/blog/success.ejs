@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%-include('../resource/_stylesheet')%>
+    <title>New Blog | SatBlog</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Đăng thành công với id:<%=info%></h1>
+        <br>
+        <h6>Bài viết sẽ xuất hiện trên trang chủ sau khi được duyệt</h6>
+        <hr>
+        
+            <div class="form-group">
+                <a href="/article/new" type="submit" class="btn btn-success">Đăng bài khác</a>
+                <a href="/" type="submit" class="btn btn-secondary">Quay lại trang chủ</a>
+            </div>
+    </div>
+    
+</body>
+</html>

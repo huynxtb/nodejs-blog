@@ -1,0 +1,25 @@
+{
+  "name": "MarkdownBlog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^23.1.0",
+    "@ckeditor/ckeditor5-image": "^23.1.0",
+    "@ckeditor/ckeditor5-inspector": "^2.2.1",
+    "ckeditor4": "^4.15.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
